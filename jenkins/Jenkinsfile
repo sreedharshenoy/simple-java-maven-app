@@ -1,12 +1,12 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Build mysecond') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
-        stage('Test') {
+        stage('Test mysecond') {
             steps {
                 sh 'mvn test'
             }
@@ -16,15 +16,15 @@ pipeline {
                 }
             }
         }
-        stage('Deliver') {
+        stage('Deliver mysecond') {
             steps {
                 sh './jenkins/scripts/deliver.sh'
             }
         }
-        stage('Finalize') {
-            steps {
-                echo "Job now complete."
-            }
+    }
+    post {
+        always {
+            echo "Job now complete for this branch."
         }
     }
 }
